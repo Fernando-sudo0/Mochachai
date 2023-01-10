@@ -84,7 +84,7 @@ Browser.site = "https://fer122.herokuapp.com/"
   });
 
   suite('"Famous Italian Explorers" form', function () {
-
+// #5
     test('Submit the surname "Colombo" in the HTML form', function (done) {
       browser.fill('surname', 'Colombo').then(() => {
         browser.pressButton('submit', () => {
@@ -97,17 +97,18 @@ Browser.site = "https://fer122.herokuapp.com/"
       });
     });
     
-    // #5
-    test('Submit the surname "Colombo" in the HTML form', function (done) {
-      // assert.equal(res.status, 200, 'response status should be 200');
-
-      done();
-    });
     // #6
     test('Submit the surname "Vespucci" in the HTML form', function (done) {
-      // assert.equal(res.status, 200, 'response status should be 200');
-
-      done();
+      browser.fill("surname", "Vespucci").then(() =>{
+        browser.pressButton('submit', ()=>{
+          browser.assert.success(); 
+          browser.assert.text("span#name", "Amerigo");
+          browser.assert.text("span#surname", "Vespucci");
+          browser.assert.elements("span#dates", 1);
+          done();
+        })
+      })
+     
     });
   });
 });
