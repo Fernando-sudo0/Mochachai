@@ -66,30 +66,34 @@ suite('Functional Tests', function () {
 });
 
 const Browser = require('zombie');
+Browser.site = "https://fer122.herokuapp.com/"
+ suite('Functional Tests with Zombie.js', function () {
+  const browser = new Browser();
 
-// suite('Functional Tests with Zombie.js', function () {
-//   this.timeout(5000);
+  suiteSetup(function(done) {
+    return browser.visit('/', done);
+  });
+  
+  this.timeout(5000);
 
+  suite('Headless browser', function () {
+    test('should have a working "site" property', function() {
+      assert.isNotNull(browser.site);
+    });
+  });
 
+  suite('"Famous Italian Explorers" form', function () {
+    // #5
+    test('Submit the surname "Colombo" in the HTML form', function (done) {
+      assert.equal(res.status, 200, 'response status should be 200');
 
-//   suite('Headless browser', function () {
-//     test('should have a working "site" property', function() {
-//       assert.isNotNull(browser.site);
-//     });
-//   });
+      done();
+    });
+    // #6
+    test('Submit the surname "Vespucci" in the HTML form', function (done) {
+      assert.equal(res.status, 200, 'response status should be 200');
 
-//   suite('"Famous Italian Explorers" form', function () {
-//     // #5
-//     test('Submit the surname "Colombo" in the HTML form', function (done) {
-//       assert.equal(res.status, 200, 'response status should be 200');
-
-//       done();
-//     });
-//     // #6
-//     test('Submit the surname "Vespucci" in the HTML form', function (done) {
-//       assert.equal(res.status, 200, 'response status should be 200');
-
-//       done();
-//     });
-//   });
-// });
+      done();
+    });
+  });
+});
