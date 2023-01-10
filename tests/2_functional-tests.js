@@ -55,6 +55,9 @@ suite('Functional Tests', function () {
       .send({surname: "da Verrazzano"})
       .end(function(err, res){
         assert.equal(res.status, 200, 'response status should be 200');
+        assert.equal(res.type, "application/json", "Response should be json");
+        assert.equal(res.body.name, "Giovanni", "res.body.name should be Giovanni")
+        assert.equal(res.body.surname, "res.body.surname should be da Verrazzano")
         done();
       })
 
